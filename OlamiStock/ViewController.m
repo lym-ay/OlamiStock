@@ -13,6 +13,7 @@
 #import "TFHpple.h"
 
 #define HttpUrl @"http://hq.sinajs.cn/list="
+#define EPSINON 0.000001
 
 @interface ViewController ()<VoiceViewDelegate> {
     NetWorkAction *networkAction;
@@ -33,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *todayMin;
 @property (weak, nonatomic) IBOutlet UILabel *todayMax;
 @property (weak, nonatomic) IBOutlet UILabel *traNumber;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+ 
 @end
 
 @implementation ViewController
@@ -91,7 +94,7 @@
     _traAmount.text = @"";
     _traNumber.text = @"";
     _yesterdayPrice.text = @"";
-    
+    _timeLabel.text = @"";
     
     
 }
@@ -138,6 +141,7 @@
 
 - (void)stockInformation:(NSString *)stockName {
     NSString *code = [dicCode objectForKey:stockName];
+    _numberLabel.text = [NSString stringWithFormat:@"(%@)",code];
     NSString *url;
     if (code) {
         NSString *str = [code substringWithRange:NSMakeRange(0, 1)];
@@ -172,9 +176,15 @@
             float curPrice = [stockData[3] floatValue];
             float yesPrice = [stockData[2] floatValue];
             float min = curPrice - yesPrice;
+            if (min > 0) {
+                _increasePrice.textColor = COLOR(245, 107, 109, 1);
+            }
             _increasePrice.text = [NSString stringWithFormat:@"%0.02f",min];
             
             float perNum = (min/yesPrice)*100;
+            if (perNum > 0 ) {
+                _increasePer.textColor = COLOR(245, 107, 109, 1);
+            }
             _increasePer.text = [NSString stringWithFormat:@"%0.02f%@",perNum,@"%"];
             
             _todayMax.text = stockData[4];
@@ -185,7 +195,7 @@
             long long num1 = [stockData[9] longLongValue];
             num1 = num1/10000;
             _traAmount.text = [NSString stringWithFormat:@"%lld万元",num1];
-            ;
+            _timeLabel.text = [NSString stringWithFormat:@"%@ %@",stockData[30],stockData[31]];
             
             
         } error:^(NSError *error) {

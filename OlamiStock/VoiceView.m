@@ -171,29 +171,13 @@
 
 //处理modify
 - (void)processModify:(NSString*) str {
-    if ([str isEqualToString:@"query"]
-        || [str isEqualToString:@"watch_channel"]
-        || [str isEqualToString:@"needmore"]
-        || [str isEqualToString:@"needmore_ask"]) {//查询股票
+    if ([str isEqualToString:@"query"]) {//查询股票
         NSString *name = _slotValue[0];
         if (name) {
             [self.delegate getStockName:name];
         }
         
-       
-    }else if ([str isEqualToString:@"rules"]){
-        
-        
-    }else if ([str isEqualToString:@""]){
-        
-        
-    }else if ([str isEqualToString:@"watch_a_program"]){//查看具体的节目
-        
-    }else if ([str isEqualToString:@"tv_close"] ||
-              [str isEqualToString:@"tv_open"]){//打开和关闭电视
-        
     }
-    
 }
 
 //处理ASR节点

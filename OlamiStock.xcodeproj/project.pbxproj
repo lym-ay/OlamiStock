@@ -147,6 +147,7 @@
 			children = (
 				32096F9A1F3AE1E000168552 /* resource */,
 				32096F961F3AE13D00168552 /* Helper */,
+				320970561F3AE47A00168552 /* VoiceView */,
 				32096F7F1F3AE13500168552 /* AppDelegate.h */,
 				32096F801F3AE13500168552 /* AppDelegate.m */,
 				32096F821F3AE13500168552 /* ViewController.h */,
@@ -175,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				324246941F3DA719002FE962 /* TFHpple */,
-				320970561F3AE47A00168552 /* VoiceView */,
 				3209704A1F3AE37100168552 /* NetWorkAction.h */,
 				3209704B1F3AE37100168552 /* NetWorkAction.m */,
 				320970461F3AE35E00168552 /* MBProgressHUD */,
